@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Quiz App</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Updated background: light blue, soft grey, pastel/natural mix */
             background: linear-gradient(135deg, #e0f2fe 0%, #cfd8dc 50%, #f0f4f8 100%);
             display: flex;
             justify-content: center;
@@ -23,23 +20,21 @@
         }
         .container {
             width: 100%;
-            max-width: 960px; /* Max width for larger screens */
+            max-width: 960px;
             background-color: #ffffff;
-            border-radius: 1.5rem; /* More rounded corners */
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Stronger shadow */
-            padding: 2.5rem; /* More padding */
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem;
             box-sizing: border-box;
-            border: 1px solid #e2e8f0; /* Subtle border */
+            border: 1px solid #e2e8f0;
         }
         .hidden {
             display: none !important;
         }
         .btn-primary {
-            /* More vibrant primary button */
             @apply bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-800 transition duration-300 ease-in-out shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75;
         }
         .btn-secondary {
-            /* Slightly more styled secondary button */
             @apply bg-gray-100 text-gray-700 px-5 py-2.5 rounded-xl hover:bg-gray-200 transition duration-300 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50;
         }
         input[type="text"],
@@ -55,11 +50,9 @@
         .quiz-option {
             @apply flex items-center p-4 border border-gray-300 rounded-lg mb-2 cursor-pointer hover:bg-blue-50 transition duration-200 ease-in-out;
         }
-        /* Changed selected color to ash/light grey */
         .quiz-option.selected {
             @apply bg-gray-200 border-gray-400 ring-2 ring-gray-400;
         }
-        /* Correct answer feedback (ash/slate) */
         .quiz-option.correct {
             @apply bg-slate-100 border-slate-400 ring-2 ring-slate-400;
         }
@@ -119,14 +112,11 @@
 </head>
 <body>
     <div class="container">
-        <!-- Message Box Container -->
         <div id="messageBoxContainer"></div>
 
-        <!-- Authentication Section -->
         <section id="auth-section" class="space-y-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Welcome to Smart Quiz App</h2>
 
-            <!-- Login Form -->
             <div id="login-form" class="card max-w-md mx-auto">
                 <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Login</h3>
                 <form class="space-y-4">
@@ -149,7 +139,6 @@
                 <p id="auth-error-message" class="text-red-600 mt-4 hidden"></p>
             </div>
 
-            <!-- Register Form (Initially Hidden) -->
             <div id="register-form" class="card max-w-md mx-auto hidden">
                 <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Register</h3>
                 <form class="space-y-4">
@@ -172,7 +161,6 @@
                 </p>
             </div>
 
-            <!-- Forgot Password Form (Initially Hidden) -->
             <div id="forgot-password-form" class="card max-w-md mx-auto hidden">
                 <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Forgot Password</h3>
                 <form class="space-y-4">
@@ -188,7 +176,6 @@
             </div>
         </section>
 
-        <!-- User Dashboard Section (Initially Hidden) -->
         <section id="user-dashboard-section" class="hidden space-y-8">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-bold text-gray-800">Welcome, <span id="dashboard-username">User</span>!</h2>
@@ -199,7 +186,6 @@
                 </div>
             </div>
 
-            <!-- Dashboard User Stats Summary -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="card flex flex-col items-center justify-center p-6 bg-blue-50 border-blue-200">
                     <p class="text-5xl font-extrabold text-blue-600" id="dashboard-total-quizzes">0</p>
@@ -211,7 +197,6 @@
                 </div>
             </div>
 
-            <!-- Featured Quiz Section -->
             <div id="featured-quiz-section" class="card hidden">
                 <h3 class="text-2xl font-semibold mb-4 text-gray-700">Featured Quiz Today! ✨</h3>
                 <p class="text-xl font-bold text-blue-700 mb-2" id="featured-quiz-topic"></p>
@@ -219,10 +204,8 @@
                 <button class="btn-primary w-full" id="take-featured-quiz-btn">Take Featured Quiz</button>
             </div>
 
-            <!-- Quiz Selection -->
             <div id="quiz-selection" class="card">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-700">Select a Quiz Topic</h3>
-                <!-- Quiz Category Filter (New) -->
                 <div class="mb-4">
                     <label for="quiz-category-filter" class="block text-gray-700 text-sm font-medium mb-1">Filter by Category:</label>
                     <select id="quiz-category-filter" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out">
@@ -233,12 +216,10 @@
                         <option value="AI Generated">AI Generated</option>
                     </select>
                 </div>
-                <!-- Quiz Search Input -->
                 <input type="text" id="quiz-search-input" placeholder="Search quizzes by topic..."
                        class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="quiz-topics-container">
-                    <!-- Quiz topics will be dynamically loaded here -->
                 </div>
                 <button id="start-selected-quiz-btn" class="btn-primary w-full mt-6 hidden">Start Quiz</button>
 
@@ -270,16 +251,13 @@
                 </div>
             </div>
 
-            <!-- Leaderboard Section -->
             <div id="leaderboard-section" class="card">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-700">Top Quizzers 🏆</h3>
                 <ul id="leaderboard-list" class="space-y-2 text-gray-700">
-                    <!-- Leaderboard entries will be dynamically loaded here -->
                     <li class="text-gray-500">No users on the leaderboard yet.</li>
                 </ul>
             </div>
 
-            <!-- Profile Management (Initially Hidden) -->
             <div id="profile-management" class="card hidden">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-700">Your Profile</h3>
                 <div class="space-y-4">
@@ -301,7 +279,6 @@
                     </div>
                     <h4 class="text-xl font-semibold mt-6 mb-4 text-gray-700">Recent Scores:</h4>
                     <ul id="recent-scores-list" class="list-disc list-inside space-y-2 text-gray-700">
-                        <!-- Scores will be dynamically loaded here -->
                         <li class="text-gray-500">No recent scores.</li>
                     </ul>
                 </div>
@@ -309,7 +286,6 @@
             </div>
         </section>
 
-        <!-- Quiz Section (Initially Hidden) -->
         <section id="quiz-section" class="hidden space-y-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6" id="quiz-title"></h2>
             <div class="flex justify-between items-center mb-6 text-gray-700 font-medium">
@@ -325,7 +301,6 @@
             <div class="card">
                 <p class="text-xl font-semibold mb-4 text-gray-800" id="question-text"></p>
                 <div id="answer-options" class="space-y-3">
-                    <!-- Answer options will be dynamically loaded here -->
                 </div>
                 <button id="get-ai-explanation-btn" class="btn-secondary w-full mt-4 hidden">Get AI Explanation ✨</button>
                 <div id="ai-explanation-spinner" class="hidden mt-2 flex items-center justify-center text-purple-600">
@@ -340,7 +315,6 @@
             </div>
         </section>
 
-        <!-- Quiz Result Section (Initially Hidden) -->
         <section id="quiz-result-section" class="hidden space-y-6 text-center">
             <h2 class="text-3xl font-bold text-gray-800">Quiz Completed!</h2>
             <div class="card mx-auto max-w-md">
@@ -352,17 +326,14 @@
             </div>
         </section>
 
-        <!-- Quiz Review Section (Initially Hidden) -->
         <section id="quiz-review-section" class="hidden space-y-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Quiz Review</h2>
             <div id="review-questions-container" class="space-y-6">
-                <!-- Reviewed questions will be dynamically loaded here -->
             </div>
             <button class="btn-primary w-full mt-6" id="back-to-dashboard-from-review-btn">Back to Dashboard</button>
         </section>
 
 
-        <!-- Admin Dashboard Section (Initially Hidden) -->
         <section id="admin-dashboard-section" class="hidden space-y-8">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-bold text-gray-800">Admin Panel</h2>
@@ -374,12 +345,10 @@
                 <button class="btn-primary mb-4" id="add-new-quiz-btn">Add New Quiz</button>
 
                 <div id="quiz-list" class="space-y-4">
-                    <!-- Existing quizzes will be listed here -->
                     <p class="text-gray-500">No quizzes to display.</p>
                 </div>
             </div>
 
-            <!-- Add/Edit Quiz Form (Initially Hidden) -->
             <div id="add-edit-quiz-form" class="card hidden">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-700" id="quiz-form-title">Add New Quiz</h3>
                 <form class="space-y-4" id="quiz-management-form">
@@ -405,7 +374,6 @@
                     </div>
                     <div id="questions-container" class="space-y-4 border p-4 rounded-lg bg-gray-50">
                         <h4 class="text-xl font-semibold text-gray-700">Questions</h4>
-                        <!-- Dynamic question fields go here -->
                         <div class="question-item space-y-2 p-3 border rounded-lg bg-white">
                             <label for="question-text-0" class="block text-gray-700 text-sm font-medium mb-1">Question 1 Text</label>
                             <input type="text" id="question-text-0" placeholder="Enter question text" required>
@@ -425,26 +393,24 @@
     </div>
 
     <script>
-        // --- Global State Variables ---
-        let currentUser = null; // Stores logged-in user's data { username, email, scores: [] }
-        let currentQuiz = null; // Stores the active quiz data
+        let currentUser = null;
+        let currentQuiz = null;
         let currentQuestionIndex = 0;
-        let userAnswers = []; // Stores user's selected answers for the current quiz
+        let userAnswers = [];
         let timerInterval = null;
         let timeLeft = 0;
-        const QUIZ_DURATION_SECONDS = 300; // 5 minutes per quiz for demonstration
-        let isTimerPaused = false; // New state for timer pause
-        let currentQuizQuestions = []; // Store questions for review (deep copy from currentQuiz)
-        let lifeline5050Used = false; // New state for 50/50 lifeline usage
+        const QUIZ_DURATION_SECONDS = 300;
+        let isTimerPaused = false;
+        let currentQuizQuestions = [];
+        let lifeline5050Used = false;
 
-        // In-memory "database" backed by localStorage
         let users = JSON.parse(localStorage.getItem('quizUsers')) || [];
         let quizzes = JSON.parse(localStorage.getItem('quizData')) || [
             {
                 id: 'q1',
                 topic: 'History',
                 difficulty: 'easy',
-                category: 'Academic', // New category field
+                category: 'Academic',
                 questions: [
                     {
                         text: 'Who was the first president of the United States?',
@@ -467,7 +433,7 @@
                 id: 'q2',
                 topic: 'Science',
                 difficulty: 'medium',
-                category: 'Academic', // New category field
+                category: 'Academic',
                 questions: [
                     {
                         text: 'What is the chemical symbol for water?',
@@ -490,7 +456,7 @@
                 id: 'q3',
                 topic: 'General Knowledge',
                 difficulty: 'hard',
-                category: 'General Knowledge', // New category field
+                category: 'General Knowledge',
                 questions: [
                     {
                         text: 'What is the value of Pi (π) to two decimal places?',
@@ -511,7 +477,6 @@
             }
         ];
 
-        // --- DOM Elements ---
         const messageBoxContainer = document.getElementById('messageBoxContainer');
         const authSection = document.getElementById('auth-section');
         const loginForm = document.getElementById('login-form');
@@ -527,12 +492,12 @@
 
         const userDashboardSection = document.getElementById('user-dashboard-section');
         const dashboardUsername = document.getElementById('dashboard-username');
-        const dashboardTotalQuizzes = document.getElementById('dashboard-total-quizzes'); // New
-        const dashboardAverageScore = document.getElementById('dashboard-average-score'); // New
-        const featuredQuizSection = document.getElementById('featured-quiz-section'); // New
-        const featuredQuizTopic = document.getElementById('featured-quiz-topic'); // New
-        const featuredQuizDetails = document.getElementById('featured-quiz-details'); // New
-        const takeFeaturedQuizBtn = document.getElementById('take-featured-quiz-btn'); // New
+        const dashboardTotalQuizzes = document.getElementById('dashboard-total-quizzes');
+        const dashboardAverageScore = document.getElementById('dashboard-average-score');
+        const featuredQuizSection = document.getElementById('featured-quiz-section');
+        const featuredQuizTopic = document.getElementById('featured-quiz-topic');
+        const featuredQuizDetails = document.getElementById('featured-quiz-details');
+        const takeFeaturedQuizBtn = document.getElementById('take-featured-quiz-btn');
 
         const profileManagement = document.getElementById('profile-management');
         const profileUsername = document.getElementById('profile-username');
@@ -544,21 +509,21 @@
         const quizTopicsContainer = document.getElementById('quiz-topics-container');
         const startSelectedQuizBtn = document.getElementById('start-selected-quiz-btn'); 
         const aiTopicInput = document.getElementById('ai-topic-input');
-        const aiNumQuestionsInput = document.getElementById('ai-num-questions-input'); // New
-        const aiDifficultySelect = document.getElementById('ai-difficulty-select'); // New
+        const aiNumQuestionsInput = document.getElementById('ai-num-questions-input');
+        const aiDifficultySelect = document.getElementById('ai-difficulty-select');
         const generateAiQuizBtn = document.getElementById('generate-ai-quiz-btn');
         const aiLoadingSpinner = document.getElementById('ai-loading-spinner');
         const aiGenerationErrorMessage = document.getElementById('ai-generation-error-message');
-        const quizSearchInput = document.getElementById('quiz-search-input'); // New search input
-        const quizCategoryFilter = document.getElementById('quiz-category-filter'); // New category filter
+        const quizSearchInput = document.getElementById('quiz-search-input');
+        const quizCategoryFilter = document.getElementById('quiz-category-filter');
 
         const quizSection = document.getElementById('quiz-section');
         const quizTitle = document.getElementById('quiz-title');
         const questionCounter = document.getElementById('question-counter');
         const timerDisplay = document.getElementById('timer');
-        const pauseTimerBtn = document.getElementById('pause-timer-btn'); // New timer buttons
-        const resumeTimerBtn = document.getElementById('resume-timer-btn'); // New timer buttons
-        const lifeline5050Btn = document.getElementById('lifeline-50-50-btn'); // New 50/50 lifeline button
+        const pauseTimerBtn = document.getElementById('pause-timer-btn');
+        const resumeTimerBtn = document.getElementById('resume-timer-btn');
+        const lifeline5050Btn = document.getElementById('lifeline-50-50-btn');
         const questionText = document.getElementById('question-text');
         const answerOptionsContainer = document.getElementById('answer-options');
         const prevBtn = document.getElementById('prev-btn');
@@ -569,33 +534,26 @@
         const quizResultSection = document.getElementById('quiz-result-section');
         const finalScoreDisplay = document.getElementById('final-score');
         const scoreDetails = document.getElementById('score-details');
-        const viewQuizReviewBtn = document.getElementById('view-quiz-review-btn'); // New review button
-        const quizReviewSection = document.getElementById('quiz-review-section'); // New review section
-        const reviewQuestionsContainer = document.getElementById('review-questions-container'); // Container for review questions
+        const viewQuizReviewBtn = document.getElementById('view-quiz-review-btn');
+        const quizReviewSection = document.getElementById('quiz-review-section');
+        const reviewQuestionsContainer = document.getElementById('review-questions-container');
 
         const adminDashboardSection = document.getElementById('admin-dashboard-section');
         const addEditQuizForm = document.getElementById('add-edit-quiz-form');
         const quizFormTitle = document.getElementById('quiz-form-title');
         const quizTopicInput = document.getElementById('quiz-topic');
         const quizDifficultySelect = document.getElementById('quiz-difficulty');
-        const quizCategorySelect = document.getElementById('quiz-category'); // New
+        const quizCategorySelect = document.getElementById('quiz-category');
         const questionsContainer = document.getElementById('questions-container');
         const quizList = document.getElementById('quiz-list');
-        const leaderboardSection = document.getElementById('leaderboard-section'); // New leaderboard section
-        const leaderboardList = document.getElementById('leaderboard-list'); // New leaderboard list
+        const leaderboardSection = document.getElementById('leaderboard-section');
+        const leaderboardList = document.getElementById('leaderboard-list');
 
 
-        // --- Utility Functions ---
-
-        /**
-         * Shows a custom message box instead of alert().
-         * @param {string} message - The message to display.
-         * @param {function} [onClose] - Callback function when the box is closed.
-         */
         function showMessageBox(message, onClose = null) {
             if (!messageBoxContainer) return;
 
-            messageBoxContainer.innerHTML = ''; // Clear any existing message box
+            messageBoxContainer.innerHTML = '';
 
             const overlay = document.createElement('div');
             overlay.className = 'overlay';
@@ -612,191 +570,137 @@
             messageBoxContainer.appendChild(messageBox);
 
             document.getElementById('messageBoxCloseBtn').onclick = () => {
-                messageBoxContainer.innerHTML = ''; // Clear message box and overlay
+                messageBoxContainer.innerHTML = '';
                 if (onClose) {
                     onClose();
                 }
             };
         }
 
-        /**
-         * Hides all main sections.
-         */
         function hideAllSections() {
             [authSection, userDashboardSection, quizSection, quizResultSection, adminDashboardSection, quizReviewSection].forEach(section => {
                 section.classList.add('hidden');
             });
-            if (authErrorMessage) authErrorMessage.classList.add('hidden'); // Clear auth errors on screen change
-            if (aiGenerationErrorMessage) aiGenerationErrorMessage.classList.add('hidden'); // Clear AI errors on screen change
+            if (authErrorMessage) authErrorMessage.classList.add('hidden');
+            if (aiGenerationErrorMessage) aiGenerationErrorMessage.classList.add('hidden');
         }
 
-        /**
-         * Displays the login form and hides others.
-         */
         function showLoginForm() {
             loginForm.classList.remove('hidden');
             registerForm.classList.add('hidden');
             forgotPasswordForm.classList.add('hidden');
-            if (authErrorMessage) authErrorMessage.classList.add('hidden'); // Clear previous errors
+            if (authErrorMessage) authErrorMessage.classList.add('hidden');
         }
 
-        /**
-         * Displays the registration form and hides others.
-         */
         function showRegisterForm() {
             loginForm.classList.add('hidden');
             registerForm.classList.remove('hidden');
             forgotPasswordForm.classList.add('hidden');
-            if (authErrorMessage) authErrorMessage.classList.add('hidden'); // Clear previous errors
+            if (authErrorMessage) authErrorMessage.classList.add('hidden');
         }
 
-        /**
-         * Displays the forgot password form and hides others.
-         */
         function showForgotPasswordForm() {
             loginForm.classList.add('hidden');
             registerForm.classList.add('hidden');
             forgotPasswordForm.classList.remove('hidden');
-            if (authErrorMessage) authErrorMessage.classList.add('hidden'); // Clear previous errors
+            if (authErrorMessage) authErrorMessage.classList.add('hidden');
         }
 
-        /**
-         * Displays the authentication section.
-         */
         function showAuthSection() {
             hideAllSections();
             authSection.classList.remove('hidden');
-            showLoginForm(); // Default to login form
+            showLoginForm();
         }
 
-        /**
-         * Displays the user dashboard section.
-         */
         function showUserDashboard() {
             hideAllSections();
             userDashboardSection.classList.remove('hidden');
             profileManagement.classList.add('hidden');
             quizSelection.classList.remove('hidden');
-            leaderboardSection.classList.remove('hidden'); // Show leaderboard on dashboard
-            featuredQuizSection.classList.remove('hidden'); // Show featured quiz on dashboard
+            leaderboardSection.classList.remove('hidden');
+            featuredQuizSection.classList.remove('hidden');
             updateDashboardUI();
             loadQuizTopics();
-            loadLeaderboard(); // Load leaderboard data
-            loadFeaturedQuiz(); // Load featured quiz
+            loadLeaderboard();
+            loadFeaturedQuiz();
         }
 
-        /**
-         * Displays the quiz section.
-         */
         function showQuizSection() {
             hideAllSections();
             quizSection.classList.remove('hidden');
-            // Reset timer buttons visibility
             pauseTimerBtn.classList.remove('hidden');
             resumeTimerBtn.classList.add('hidden');
             isTimerPaused = false;
         }
 
-        /**
-         * Displays the quiz result section.
-         */
         function showQuizResultSection() {
             hideAllSections();
             quizResultSection.classList.remove('hidden');
         }
 
-        /**
-         * Displays the quiz review section.
-         * @param {object} quizData - The quiz data (questions) for review.
-         * @param {Array} answersData - The user's answers for review.
-         */
         function showQuizReviewSection(quizData, answersData) {
             hideAllSections();
             quizReviewSection.classList.remove('hidden');
             displayQuizReview(quizData, answersData);
         }
 
-        /**
-         * Displays the admin dashboard section.
-         */
         function showAdminDashboard() {
             hideAllSections();
             adminDashboardSection.classList.remove('hidden');
             addEditQuizForm.classList.add('hidden');
-            quizList.classList.remove('hidden'); // Ensure quiz list is visible when entering admin
+            quizList.classList.remove('hidden');
             loadAdminQuizList();
         }
 
-        /**
-         * Displays the profile management section.
-         */
         function showProfile() {
             quizSelection.classList.add('hidden');
-            leaderboardSection.classList.add('hidden'); // Hide leaderboard when viewing profile
-            featuredQuizSection.classList.add('hidden'); // Hide featured quiz when viewing profile
+            leaderboardSection.classList.add('hidden');
+            featuredQuizSection.classList.add('hidden');
             profileManagement.classList.remove('hidden');
             updateProfileUI();
         }
 
-        /**
-         * Hides the profile management section.
-         */
         function hideProfile() {
             profileManagement.classList.add('hidden');
             quizSelection.classList.remove('hidden');
-            leaderboardSection.classList.remove('hidden'); // Show leaderboard again
-            featuredQuizSection.classList.remove('hidden'); // Show featured quiz again
+            leaderboardSection.classList.remove('hidden');
+            featuredQuizSection.classList.remove('hidden');
         }
 
-        /**
-         * Shows the quiz selection section.
-         */
         function showQuizSelection() {
             profileManagement.classList.add('hidden');
             quizSelection.classList.remove('hidden');
-            leaderboardSection.classList.remove('hidden'); // Show leaderboard again
-            featuredQuizSection.classList.remove('hidden'); // Show featured quiz again
+            leaderboardSection.classList.remove('hidden');
+            featuredQuizSection.classList.remove('hidden');
             loadQuizTopics();
-            quizSearchInput.value = ''; // Clear search input when showing quiz selection
-            quizCategoryFilter.value = ''; // Reset category filter
+            quizSearchInput.value = '';
+            quizCategoryFilter.value = '';
         }
 
-        /**
-         * Shows the add/edit quiz form.
-         * @param {object} [quizToEdit] - Optional quiz object to pre-fill the form for editing.
-         */
         function showAddQuizForm(quizToEdit = null) {
             addEditQuizForm.classList.remove('hidden');
-            quizList.classList.add('hidden'); // Hide quiz list when form is open
+            quizList.classList.add('hidden');
 
             quizFormTitle.textContent = quizToEdit ? 'Edit Quiz' : 'Add New Quiz';
             quizTopicInput.value = quizToEdit ? quizToEdit.topic : '';
             quizDifficultySelect.value = quizToEdit ? quizToEdit.difficulty : 'easy';
-            quizCategorySelect.value = quizToEdit ? quizToEdit.category : 'General Knowledge'; // Set category
-            addEditQuizForm.dataset.editingId = quizToEdit ? quizToEdit.id : ''; // Store ID for saving
+            quizCategorySelect.value = quizToEdit ? quizToEdit.category : 'General Knowledge';
+            addEditQuizForm.dataset.editingId = quizToEdit ? quizToEdit.id : '';
 
-            questionsContainer.innerHTML = '<h4 class="text-xl font-semibold text-gray-700">Questions</h4>'; // Clear previous questions
+            questionsContainer.innerHTML = '<h4 class="text-xl font-semibold text-gray-700">Questions</h4>';
             if (quizToEdit && quizToEdit.questions && quizToEdit.questions.length > 0) {
                 quizToEdit.questions.forEach((q, index) => addQuestionField(q, index));
             } else {
-                addQuestionField(); // Add one empty question field by default
+                addQuestionField();
             }
         }
 
-        /**
-         * Hides the add/edit quiz form.
-         */
         function hideAddEditQuizForm() {
             addEditQuizForm.classList.add('hidden');
             quizList.classList.remove('hidden');
-            loadAdminQuizList(); // Reload the list to reflect any changes
+            loadAdminQuizList();
         }
 
-        /**
-         * Adds a new question field to the add/edit quiz form.
-         * @param {object} [questionData] - Optional question object to pre-fill the fields.
-         * @param {number} [index] - Optional index for unique IDs.
-         */
         function addQuestionField(questionData = null, index = null) {
             const currentQuestionCount = questionsContainer.querySelectorAll('.question-item').length;
             const newIndex = index !== null ? index : currentQuestionCount;
@@ -807,38 +711,18 @@
                 <label for="question-text-${newIndex}" class="block text-gray-700 text-sm font-medium mb-1">Question ${newIndex + 1} Text</label>
                 <input type="text" id="question-text-${newIndex}" placeholder="Enter question text" value="${questionData ? questionData.text : ''}" required>
                 <label class="block text-gray-700 text-sm font-medium mb-1">Options (Comma separated)</label>
-                <input type="text" id="question-options-${newIndex}" placeholder="Option A, Option B, Option C" required>
+                <input type="text" id="question-options-${newIndex}" placeholder="Option A, Option B, Option C" value="${questionData && questionData.options ? questionData.options.join(', ') : ''}" required>
                 <label for="question-correct-${newIndex}" class="block text-gray-700 text-sm font-medium mb-1">Correct Option (Exact text)</label>
                 <input type="text" id="question-correct-${newIndex}" placeholder="Option A" value="${questionData ? questionData.correct : ''}" required>
-                <button type="button" class="btn-secondary text-sm mt-2" onclick="removeQuestionField(this)">Remove Question</button>
+                <button type="button" class="btn-secondary text-sm mt-2 remove-question-btn">Remove Question</button>
             `;
             questionsContainer.appendChild(questionItem);
 
-            // Attach event listener for the remove button
             questionItem.querySelector('.remove-question-btn').addEventListener('click', (event) => {
                 removeQuestionField(event.target);
             });
 
-            // Update question numbers for all fields
             questionsContainer.querySelectorAll('.question-item').forEach((item, idx) => {
-                item.querySelector('label[for^="question-text"]').textContent = `Question ${idx + 1} Text`;
-                item.querySelector('input[id^="question-text"]').id = `question-text-${idx}`;
-                item.querySelector('input[id^="question-options"]').id = `question-options-${idx}`;
-                item.querySelector('input[id^="question-correct"]').id = `question-correct-${idx}`;
-                item.querySelector('.remove-question-btn').dataset.index = idx; // Update data-index for removal
-            });
-        }
-
-        /**
-         * Removes a question field from the add/edit quiz form.
-         * @param {HTMLElement} button - The remove button element.
-         */
-        function removeQuestionField(button) {
-            const questionItem = button.closest('.question-item');
-            questionItem.remove();
-
-            // Re-index remaining questions
-            document.getElementById('questions-container').querySelectorAll('.question-item').forEach((item, idx) => {
                 item.querySelector('label[for^="question-text"]').textContent = `Question ${idx + 1} Text`;
                 item.querySelector('input[id^="question-text"]').id = `question-text-${idx}`;
                 item.querySelector('input[id^="question-options"]').id = `question-options-${idx}`;
@@ -847,12 +731,19 @@
             });
         }
 
-        // --- Authentication Functions ---
+        function removeQuestionField(button) {
+            const questionItem = button.closest('.question-item');
+            questionItem.remove();
 
-        /**
-         * Handles user login.
-         * @param {Event} event - The form submission event.
-         */
+            questionsContainer.querySelectorAll('.question-item').forEach((item, idx) => {
+                item.querySelector('label[for^="question-text"]').textContent = `Question ${idx + 1} Text`;
+                item.querySelector('input[id^="question-text"]').id = `question-text-${idx}`;
+                item.querySelector('input[id^="question-options"]').id = `question-options-${idx}`;
+                item.querySelector('input[id^="question-correct"]').id = `question-correct-${idx}`;
+                item.querySelector('.remove-question-btn').dataset.index = idx;
+            });
+        }
+
         function handleLogin(event) {
             event.preventDefault();
             const email = loginEmailInput.value;
@@ -863,7 +754,7 @@
 
             if (user) {
                 currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Persist login
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 showMessageBox(`Welcome back, ${currentUser.username}!`, () => {
                     if (currentUser.role === 'admin') {
                         showAdminDashboard();
@@ -881,10 +772,6 @@
             }
         }
 
-        /**
-         * Handles user registration.
-         * @param {Event} event - The form submission event.
-         */
         function handleRegister(event) {
             event.preventDefault();
             const username = registerUsernameInput.value.trim();
@@ -916,23 +803,19 @@
                 username,
                 email,
                 password,
-                role: 'student', // Default role
-                scores: [] // Array to store quiz scores
+                role: 'student',
+                scores: []
             };
             users.push(newUser);
             localStorage.setItem('quizUsers', JSON.stringify(users));
-            currentUser = newUser; // Log in the new user immediately
-            localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Persist login
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
             showMessageBox('Registration successful! You are now logged in.', () => {
                 showUserDashboard();
             });
         }
 
-        /**
-         * Handles password recovery.
-         * @param {Event} event - The form submission event.
-         */
         function handleForgotPassword(event) {
             event.preventDefault();
             const email = forgotEmailInput.value.trim();
@@ -950,8 +833,6 @@
 
             const user = users.find(u => u.email === email);
             if (user) {
-                // In a real app, this would send a password reset email.
-                // For this demo, we'll just simulate a success message.
                 showMessageBox(`If an account with ${email} exists, a password reset link has been sent.`, () => {
                     showLoginForm();
                 });
@@ -965,31 +846,22 @@
             }
         }
 
-        /**
-         * Logs out the current user and returns to the authentication section.
-         */
         function logout() {
             currentUser = null;
             currentQuiz = null;
             currentQuestionIndex = 0;
             userAnswers = [];
             clearInterval(timerInterval);
-            localStorage.removeItem('currentUser'); // Clear persisted login
+            localStorage.removeItem('currentUser');
             showMessageBox('You have been logged out.', () => {
                 showAuthSection();
             });
         }
 
-        // --- User Dashboard Functions ---
-
-        /**
-         * Updates the user dashboard UI with current user data.
-         */
         function updateDashboardUI() {
             if (currentUser) {
                 if (dashboardUsername) dashboardUsername.textContent = currentUser.username;
                 
-                // Update dashboard stats
                 const totalQuizzesTaken = currentUser.scores ? currentUser.scores.length : 0;
                 const totalScoreSum = currentUser.scores ? currentUser.scores.reduce((sum, s) => sum + s.score, 0) : 0;
                 const averageScore = totalQuizzesTaken > 0 ? (totalScoreSum / totalQuizzesTaken).toFixed(2) : 0;
@@ -999,9 +871,6 @@
             }
         }
 
-        /**
-         * Updates the profile UI with current user data.
-         */
         function updateProfileUI() {
             if (currentUser) {
                 if (profileUsername) profileUsername.textContent = currentUser.username;
@@ -1015,16 +884,15 @@
                 if (recentScoresList) {
                     recentScoresList.innerHTML = '';
                     if (currentUser.scores.length > 0) {
-                        // Sort by date, newest first
                         const sortedScores = [...currentUser.scores].sort((a, b) => new Date(b.date) - new Date(a.date));
-                        sortedScores.slice(0, 5).forEach((score, index) => { // Show up to 5 recent scores
+                        sortedScores.slice(0, 5).forEach((score, index) => {
                             const listItem = document.createElement('li');
                             listItem.className = 'cursor-pointer hover:text-blue-600 hover:underline';
                             listItem.textContent = `${score.topic} (${score.difficulty}): ${score.score}% on ${new Date(score.date).toLocaleDateString()}`;
-                            listItem.dataset.scoreIndex = index; // Store index to retrieve full quiz data
+                            listItem.dataset.scoreIndex = index;
                             listItem.addEventListener('click', (event) => {
                                 const scoreIdx = parseInt(event.target.dataset.scoreIndex);
-                                const historicalQuizResult = sortedScores[scoreIdx]; // Get the full historical result
+                                const historicalQuizResult = sortedScores[scoreIdx];
                                 showQuizReviewSection(historicalQuizResult.questions, historicalQuizResult.userAnswers);
                             });
                             recentScoresList.appendChild(listItem);
@@ -1039,13 +907,8 @@
             }
         }
 
-        /**
-         * Loads available quiz topics into the dashboard, optionally filtering them.
-         * @param {string} [searchTerm=''] - Optional search term to filter quizzes by topic.
-         * @param {string} [categoryFilter=''] - Optional category to filter quizzes by.
-         */
         function loadQuizTopics(searchTerm = '', categoryFilter = '') {
-            quizTopicsContainer.innerHTML = ''; // Clear previous topics
+            quizTopicsContainer.innerHTML = '';
             let filteredQuizzes = quizzes;
 
             if (searchTerm) {
@@ -1069,8 +932,8 @@
 
             filteredQuizzes.forEach(quiz => {
                 const topicCard = document.createElement('div');
-                topicCard.className = 'quiz-option flex-col items-start'; // Use flex-col for better layout
-                topicCard.dataset.quizId = quiz.id; // Store quiz ID for selection
+                topicCard.className = 'quiz-option flex-col items-start';
+                topicCard.dataset.quizId = quiz.id;
                 topicCard.innerHTML = `
                     <input type="radio" name="quizTopic" id="quiz-${quiz.id}" value="${quiz.id}" class="hidden">
                     <label for="quiz-${quiz.id}" class="flex-grow cursor-pointer w-full">
@@ -1082,27 +945,24 @@
                     <button class="btn-secondary text-xs mt-2 self-end learn-more-topic-btn" data-topic="${quiz.topic}">Learn More ✨</button>
                 `;
                 topicCard.addEventListener('click', (event) => {
-                     // Only select the card if the click wasn't on the "Learn More" button
                     if (!event.target.classList.contains('learn-more-topic-btn')) {
                         document.querySelectorAll('.quiz-option').forEach(card => card.classList.remove('selected'));
                         topicCard.classList.add('selected');
-                        currentQuiz = quizzes.find(q => q.id === quiz.id); // Set the selected quiz
+                        currentQuiz = quizzes.find(q => q.id === quiz.id);
                         startSelectedQuizBtn.classList.remove('hidden');
                     }
                 });
                 quizTopicsContainer.appendChild(topicCard);
             });
 
-            // Attach event listeners for "Learn More" buttons
             document.querySelectorAll('.learn-more-topic-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Prevent card selection when clicking "Learn More"
+                    event.stopPropagation();
                     const topic = event.target.dataset.topic;
                     getTopicOverviewWithAI(topic);
                 });
             });
 
-            // Ensure start button visibility is correct based on whether a quiz is selected
             if (!currentQuiz || !filteredQuizzes.some(q => q.id === currentQuiz.id)) {
                 startSelectedQuizBtn.classList.add('hidden');
             } else {
@@ -1110,11 +970,8 @@
             }
         }
 
-        /**
-         * Loads a random featured quiz onto the dashboard.
-         */
         function loadFeaturedQuiz() {
-            const availableQuizzes = quizzes.filter(q => q.category !== 'AI Generated'); // Don't feature AI generated quizzes
+            const availableQuizzes = quizzes.filter(q => q.category !== 'AI Generated');
             if (availableQuizzes.length > 0) {
                 const randomIndex = Math.floor(Math.random() * availableQuizzes.length);
                 const featured = availableQuizzes[randomIndex];
@@ -1122,18 +979,14 @@
                 featuredQuizDetails.textContent = `Category: ${featured.category} | Difficulty: ${featured.difficulty} | Questions: ${featured.questions.length}`;
                 featuredQuizSection.classList.remove('hidden');
                 takeFeaturedQuizBtn.onclick = () => {
-                    currentQuiz = featured; // Set the featured quiz as current
+                    currentQuiz = featured;
                     startQuiz();
                 };
             } else {
-                featuredQuizSection.classList.add('hidden'); // Hide if no quizzes available
+                featuredQuizSection.classList.add('hidden');
             }
         }
 
-
-        /**
-         * Starts a quiz based on the selected quiz ID.
-         */
         function startQuiz() {
             if (!currentQuiz) {
                 showMessageBox('Please select a quiz topic first.');
@@ -1141,11 +994,11 @@
             }
 
             currentQuestionIndex = 0;
-            userAnswers = Array(currentQuiz.questions.length).fill(null); // Initialize user answers
+            userAnswers = Array(currentQuiz.questions.length).fill(null);
             timeLeft = QUIZ_DURATION_SECONDS;
-            currentQuizQuestions = JSON.parse(JSON.stringify(currentQuiz.questions)); // Deep copy for review
-            lifeline5050Used = false; // Reset lifeline usage for new quiz
-            lifeline5050Btn.disabled = false; // Enable 50/50 button
+            currentQuizQuestions = JSON.parse(JSON.stringify(currentQuiz.questions));
+            lifeline5050Used = false;
+            lifeline5050Btn.disabled = false;
 
             quizTitle.textContent = `${currentQuiz.topic} Quiz`;
             showQuizSection();
@@ -1153,11 +1006,6 @@
             startTimer();
         }
 
-        // --- Quiz Functions ---
-
-        /**
-         * Applies the 50/50 lifeline.
-         */
         function use5050Lifeline() {
             if (lifeline5050Used) {
                 showMessageBox("You've already used your 50/50 lifeline for this quiz.");
@@ -1165,14 +1013,12 @@
             }
 
             const currentQuestion = currentQuiz.questions[currentQuestionIndex];
-            const options = Array.from(answerOptionsContainer.children); // Get all option divs
+            const options = Array.from(answerOptionsContainer.children);
             const correctOptionDiv = options.find(opt => opt.dataset.option === currentQuestion.correct);
 
-            // Find incorrect options
             const incorrectOptions = options.filter(opt => opt.dataset.option !== currentQuestion.correct);
 
             if (incorrectOptions.length >= 2) {
-                // Randomly select two incorrect options to hide
                 const optionsToHide = [];
                 while (optionsToHide.length < 2) {
                     const randomIndex = Math.floor(Math.random() * incorrectOptions.length);
@@ -1183,22 +1029,18 @@
                 }
 
                 optionsToHide.forEach(optDiv => {
-                    optDiv.classList.add('hidden'); // Hide the option
-                    optDiv.style.pointerEvents = 'none'; // Make it unclickable
+                    optDiv.classList.add('hidden');
+                    optDiv.style.pointerEvents = 'none';
                 });
 
                 lifeline5050Used = true;
-                lifeline5050Btn.disabled = true; // Disable button after use
+                lifeline5050Btn.disabled = true;
                 showMessageBox("Two incorrect options have been removed!");
             } else {
                 showMessageBox("50/50 can't be used, not enough incorrect options to remove.");
             }
         }
 
-
-        /**
-         * Displays the current question and its options.
-         */
         function displayQuestion() {
             if (!currentQuiz || currentQuestionIndex >= currentQuiz.questions.length) {
                 submitQuiz();
@@ -1209,15 +1051,15 @@
             questionCounter.textContent = `Question ${currentQuestionIndex + 1}/${currentQuiz.questions.length}`;
             questionText.textContent = question.text;
 
-            answerOptionsContainer.innerHTML = ''; // Clear previous options
-            getAiExplanationBtn.classList.add('hidden'); // Hide AI explanation button by default
-            aiExplanationSpinner.classList.add('hidden'); // Hide AI explanation spinner
-            lifeline5050Btn.disabled = lifeline5050Used; // Update 50/50 button state
+            answerOptionsContainer.innerHTML = '';
+            getAiExplanationBtn.classList.add('hidden');
+            aiExplanationSpinner.classList.add('hidden');
+            lifeline5050Btn.disabled = lifeline5050Used;
 
             question.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'quiz-option';
-                optionDiv.dataset.option = option; // Add data-option for easy lookup
+                optionDiv.dataset.option = option;
                 optionDiv.innerHTML = `
                     <input type="radio" name="answer" id="option-${index}" value="${option}" class="hidden">
                     <label for="option-${index}" class="flex-grow cursor-pointer text-gray-700">
@@ -1228,7 +1070,6 @@
                 answerOptionsContainer.appendChild(optionDiv);
             });
 
-            // Highlight previously selected answer if any and apply feedback
             if (userAnswers[currentQuestionIndex] !== null) {
                 const selectedOptionValue = userAnswers[currentQuestionIndex];
                 const selectedOptionDiv = answerOptionsContainer.querySelector(`.quiz-option[data-option="${selectedOptionValue}"]`);
@@ -1237,55 +1078,42 @@
                     const radio = selectedOptionDiv.querySelector('input[type="radio"]');
                     if (radio) radio.checked = true;
                 }
-                updateAnswerFeedback(); // Apply correct/incorrect styling
+                updateAnswerFeedback();
             } else {
-                // Re-enable clicks if no answer is selected yet for this question
                 answerOptionsContainer.querySelectorAll('.quiz-option').forEach(optionDiv => {
                     optionDiv.style.pointerEvents = 'auto';
                 });
             }
 
-            // Update navigation buttons
             prevBtn.disabled = currentQuestionIndex === 0;
             nextBtn.textContent = currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Submit Quiz' : 'Next';
         }
 
-        /**
-         * Selects an answer for the current question.
-         * @param {string} selectedOption - The text of the selected option.
-         */
         function selectAnswer(selectedOption) {
             userAnswers[currentQuestionIndex] = selectedOption;
-            // Visually update selection
             document.querySelectorAll('.quiz-option').forEach(optionDiv => {
-                optionDiv.classList.remove('selected', 'correct', 'incorrect'); // Clear all feedback first
-                optionDiv.style.pointerEvents = 'none'; // Disable clicks after selection
+                optionDiv.classList.remove('selected', 'correct', 'incorrect');
+                optionDiv.style.pointerEvents = 'none';
                 const radio = optionDiv.querySelector('input[type="radio"]');
-                if (radio) radio.checked = false; // Uncheck all radios
+                if (radio) radio.checked = false;
             });
 
             const selectedOptionDiv = answerOptionsContainer.querySelector(`.quiz-option[data-option="${selectedOption}"]`);
             if (selectedOptionDiv) {
-                selectedOptionDiv.classList.add('selected'); // Apply selected style
+                selectedOptionDiv.classList.add('selected');
                 const radio = selectedOptionDiv.querySelector('input[type="radio"]');
-                if (radio) radio.checked = true; // Check the selected radio
+                if (radio) radio.checked = true;
             }
-            updateAnswerFeedback(); // Apply correct/incorrect styling
+            updateAnswerFeedback();
         }
 
-        /**
-         * Updates the visual feedback for the selected answer (correct/incorrect).
-         */
         function updateAnswerFeedback() {
             const currentQuestion = currentQuiz.questions[currentQuestionIndex];
             const selectedAnswer = userAnswers[currentQuestionIndex];
 
             answerOptionsContainer.querySelectorAll('.quiz-option').forEach(optionDiv => {
-                // Keep 'selected' class if it was applied by selectAnswer, then add correct/incorrect
-                // optionDiv.classList.remove('correct', 'incorrect'); // This line was problematic, removed it from here
-
-                if (selectedAnswer !== null) { // If an answer has been selected for this question
-                    optionDiv.style.pointerEvents = 'none'; // Disable clicks after selection
+                if (selectedAnswer !== null) {
+                    optionDiv.style.pointerEvents = 'none';
 
                     if (optionDiv.dataset.option === currentQuestion.correct) {
                         optionDiv.classList.add('correct');
@@ -1295,7 +1123,6 @@
                 }
             });
 
-            // Show/hide AI explanation button based on correctness
             if (selectedAnswer !== null && selectedAnswer !== currentQuestion.correct) {
                 getAiExplanationBtn.classList.remove('hidden');
             } else {
@@ -1303,9 +1130,6 @@
             }
         }
 
-        /**
-         * Moves to the previous question.
-         */
         function prevQuestion() {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
@@ -1313,9 +1137,6 @@
             }
         }
 
-        /**
-         * Moves to the next question or submits the quiz if it's the last question.
-         */
         function nextQuestion() {
             if (currentQuestionIndex < currentQuiz.questions.length - 1) {
                 currentQuestionIndex++;
@@ -1325,12 +1146,9 @@
             }
         }
 
-        /**
-         * Starts the quiz timer.
-         */
         function startTimer() {
-            clearInterval(timerInterval); // Clear any existing timer
-            if (isTimerPaused) return; // Don't start if paused
+            clearInterval(timerInterval);
+            if (isTimerPaused) return;
 
             timerInterval = setInterval(() => {
                 timeLeft--;
@@ -1345,9 +1163,6 @@
             }, 1000);
         }
 
-        /**
-         * Pauses the quiz timer.
-         */
         function pauseTimer() {
             clearInterval(timerInterval);
             isTimerPaused = true;
@@ -1355,9 +1170,6 @@
             resumeTimerBtn.classList.remove('hidden');
         }
 
-        /**
-         * Resumes the quiz timer.
-         */
         function resumeTimer() {
             isTimerPaused = false;
             startTimer();
@@ -1365,11 +1177,8 @@
             resumeTimerBtn.classList.add('hidden');
         }
 
-        /**
-         * Submits the quiz, calculates the score, and displays results.
-         */
         function submitQuiz() {
-            clearInterval(timerInterval); // Stop the timer
+            clearInterval(timerInterval);
             let correctAnswersCount = 0;
 
             currentQuiz.questions.forEach((question, index) => {
@@ -1381,9 +1190,7 @@
             const totalQuestions = currentQuiz.questions.length;
             const score = (correctAnswersCount / totalQuestions) * 100;
 
-            // Store score in current user's data
             if (currentUser) {
-                // Ensure currentUser.scores is an array
                 if (!currentUser.scores) {
                     currentUser.scores = [];
                 }
@@ -1391,14 +1198,14 @@
                     quizId: currentQuiz.id,
                     topic: currentQuiz.topic,
                     difficulty: currentQuiz.difficulty,
-                    category: currentQuiz.category || 'N/A', // Store category
+                    category: currentQuiz.category || 'N/A',
                     score: parseFloat(score.toFixed(2)),
                     date: new Date().toISOString(),
-                    userAnswers: userAnswers, // Store user's answers for review
-                    questions: currentQuiz.questions // Store questions for review
+                    userAnswers: userAnswers,
+                    questions: currentQuiz.questions
                 });
-                localStorage.setItem('quizUsers', JSON.stringify(users)); // Update local storage
-                localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Update current user in local storage
+                localStorage.setItem('quizUsers', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
             }
 
             finalScoreDisplay.textContent = `${score.toFixed(2)}%`;
@@ -1406,13 +1213,8 @@
             showQuizResultSection();
         }
 
-        /**
-         * Displays the quiz review after completion or for a past quiz.
-         * @param {object} quizData - The quiz data (questions) for review.
-         * @param {Array} answersData - The user's answers for review.
-         */
         function displayQuizReview(quizData, answersData) {
-            reviewQuestionsContainer.innerHTML = ''; // Clear previous review
+            reviewQuestionsContainer.innerHTML = '';
 
             quizData.forEach((question, index) => {
                 const userAnswer = answersData[index];
@@ -1429,25 +1231,19 @@
                 reviewQuestionsContainer.appendChild(reviewItem);
             });
 
-            // Attach event listeners for "View Explanation" buttons in review
             document.querySelectorAll('.get-review-explanation-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const qIndex = parseInt(event.target.dataset.questionIndex);
-                    const question = quizData[qIndex]; // Use quizData passed to this function
-                    const selectedAnswer = answersData[qIndex]; // Use answersData passed to this function
+                    const question = quizData[qIndex];
+                    const selectedAnswer = answersData[qIndex];
                     getAiExplanationForReview(question.text, question.correct, selectedAnswer);
                 });
             });
         }
 
-        // --- Admin Functions ---
-
-        /**
-         * Loads and displays the list of quizzes in the admin panel.
-         */
         function loadAdminQuizList() {
             const quizListContainer = document.getElementById('quiz-list');
-            quizListContainer.innerHTML = ''; // Clear existing list
+            quizListContainer.innerHTML = '';
 
             if (quizzes.length === 0) {
                 quizListContainer.innerHTML = '<p class="text-gray-500">No quizzes to display. Click "Add New Quiz" to create one.</p>';
@@ -1471,7 +1267,6 @@
                 quizListContainer.appendChild(quizItem);
             });
 
-            // Attach event listeners for edit and delete buttons
             document.querySelectorAll('.edit-quiz-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const quizId = event.target.dataset.quizId;
@@ -1486,16 +1281,12 @@
             });
         }
 
-        /**
-         * Saves a new or edited quiz.
-         * @param {Event} event - The form submission event.
-         */
         function saveQuiz(event) {
             event.preventDefault();
 
             const quizTopic = quizTopicInput.value.trim();
             const quizDifficulty = quizDifficultySelect.value;
-            const quizCategory = quizCategorySelect.value; // Get category
+            const quizCategory = quizCategorySelect.value;
             const questionItems = questionsContainer.querySelectorAll('.question-item');
 
             if (!quizTopic) {
@@ -1538,25 +1329,22 @@
                 return;
             }
 
-            // Check if we are editing an existing quiz or adding a new one
             const editingId = addEditQuizForm.dataset.editingId;
             if (editingId) {
-                // Editing existing quiz
                 const quizIndex = quizzes.findIndex(q => q.id === editingId);
                 if (quizIndex !== -1) {
                     quizzes[quizIndex].topic = quizTopic;
                     quizzes[quizIndex].difficulty = quizDifficulty;
-                    quizzes[quizIndex].category = quizCategory; // Update category
+                    quizzes[quizIndex].category = quizCategory;
                     quizzes[quizIndex].questions = newQuestions;
                     showMessageBox('Quiz updated successfully!', hideAddEditQuizForm);
                 }
             } else {
-                // Adding new quiz
                 const newQuiz = {
-                    id: 'q' + Date.now(), // Simple unique ID
+                    id: 'q' + Date.now(),
                     topic: quizTopic,
                     difficulty: quizDifficulty,
-                    category: quizCategory, // Set category
+                    category: quizCategory,
                     questions: newQuestions
                 };
                 quizzes.push(newQuiz);
@@ -1564,41 +1352,30 @@
             }
 
             localStorage.setItem('quizData', JSON.stringify(quizzes));
-            addEditQuizForm.removeAttribute('data-editing-id'); // Clear editing state
+            addEditQuizForm.removeAttribute('data-editing-id');
         }
 
-        /**
-         * Pre-fills the form for editing an existing quiz.
-         * @param {string} quizId - The ID of the quiz to edit.
-         */
         function editQuiz(quizId) {
             const quizToEdit = quizzes.find(q => q.id === quizId);
             if (quizToEdit) {
-                addEditQuizForm.dataset.editingId = quizId; // Store ID for saving
+                addEditQuizForm.dataset.editingId = quizId;
                 showAddQuizForm(quizToEdit);
             } else {
                 showMessageBox('Quiz not found for editing.');
             }
         }
 
-        /**
-         * Deletes a quiz.
-         * @param {string} quizId - The ID of the quiz to delete.
-         */
         function deleteQuiz(quizId) {
             showMessageBox('Are you sure you want to delete this quiz?', () => {
                 quizzes = quizzes.filter(q => q.id !== quizId);
                 localStorage.setItem('quizData', JSON.stringify(quizzes));
-                loadAdminQuizList(); // Refresh the list
+                loadAdminQuizList();
                 showMessageBox('Quiz deleted successfully.');
             });
         }
 
-        /**
-         * Loads and displays the leaderboard.
-         */
         function loadLeaderboard() {
-            leaderboardList.innerHTML = ''; // Clear existing list
+            leaderboardList.innerHTML = '';
 
             const usersWithScores = users.map(user => {
                 const totalScoreSum = user.scores ? user.scores.reduce((sum, s) => sum + s.score, 0) : 0;
@@ -1609,14 +1386,13 @@
                     averageScore: averageScore,
                     totalQuizzes: totalQuizzes
                 };
-            }).filter(user => user.totalQuizzes > 0); // Only show users who have taken quizzes
+            }).filter(user => user.totalQuizzes > 0);
 
             if (usersWithScores.length === 0) {
                 leaderboardList.innerHTML = '<li class="text-gray-500">No users on the leaderboard yet. Take some quizzes!</li>';
                 return;
             }
 
-            // Sort by average score descending, then by total quizzes descending
             usersWithScores.sort((a, b) => {
                 if (b.averageScore === a.averageScore) {
                     return b.totalQuizzes - a.totalQuizzes;
@@ -1624,7 +1400,7 @@
                 return b.averageScore - a.averageScore;
             });
 
-            usersWithScores.slice(0, 5).forEach((user, index) => { // Show top 5
+            usersWithScores.slice(0, 5).forEach((user, index) => {
                 const listItem = document.createElement('li');
                 listItem.className = 'flex justify-between items-center py-2 px-4 rounded-lg bg-gray-50 shadow-sm';
                 listItem.innerHTML = `
@@ -1635,15 +1411,6 @@
             });
         }
 
-
-        // --- AI Integration Functions ---
-
-        /**
-         * Generates quiz questions using the Gemini AI API.
-         * @param {string} topic - The topic for the quiz questions.
-         * @param {number} numQuestions - Number of questions to generate.
-         * @param {string} difficulty - Difficulty level for the questions.
-         */
         async function generateQuestionsWithAI(topic, numQuestions, difficulty) {
             if (!topic.trim()) {
                 aiGenerationErrorMessage.textContent = "Please enter a topic to generate AI questions.";
@@ -1687,7 +1454,7 @@
                     }
                 };
 
-                const apiKey = ""; // Canvas will provide this at runtime
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -1713,15 +1480,15 @@
                         const newAiQuiz = {
                             id: 'ai-generated-' + Date.now(),
                             topic: topic,
-                            difficulty: difficulty, // Use selected difficulty
-                            category: 'AI Generated', // AI generated quizzes have their own category
+                            difficulty: difficulty,
+                            category: 'AI Generated',
                             questions: generatedQuestions,
-                            isAiGenerated: true // Flag to identify AI-generated quizzes
+                            isAiGenerated: true
                         };
                         quizzes.push(newAiQuiz);
                         localStorage.setItem('quizData', JSON.stringify(quizzes));
                         showMessageBox('AI Quiz generated and added! Starting quiz now.', () => {
-                            currentQuiz = newAiQuiz; // Set the new AI quiz as current
+                            currentQuiz = newAiQuiz;
                             startQuiz();
                         });
                     } else {
@@ -1742,9 +1509,6 @@
             }
         }
 
-        /**
-         * Generates an AI explanation for an incorrect answer during the quiz.
-         */
         async function getAiExplanation() {
             const currentQuestion = currentQuiz.questions[currentQuestionIndex];
             const selectedAnswer = userAnswers[currentQuestionIndex];
@@ -1762,11 +1526,11 @@
                 const payload = {
                     contents: chatHistory,
                     generationConfig: {
-                        responseMimeType: "text/plain" // Request plain text response
+                        responseMimeType: "text/plain"
                     }
                 };
 
-                const apiKey = ""; // Canvas will provide this at runtime
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -1799,17 +1563,13 @@
             }
         }
 
-        /**
-         * Generates an AI explanation for an incorrect answer during quiz review.
-         * This is a separate function to avoid conflicts with the main quiz flow's button state.
-         */
         async function getAiExplanationForReview(questionText, correctAnswer, userAnswer) {
             showMessageBox(`
                 <div class="flex items-center justify-center text-purple-600">
                     <div class="spinner mr-2"></div>
                     Getting explanation...
                 </div>
-            `); // Show loading spinner in message box
+            `);
 
             try {
                 let chatHistory = [];
@@ -1819,11 +1579,11 @@
                 const payload = {
                     contents: chatHistory,
                     generationConfig: {
-                        responseMimeType: "text/plain" // Request plain text response
+                        responseMimeType: "text/plain"
                     }
                 };
 
-                const apiKey = ""; // Canvas will provide this at runtime
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -1853,17 +1613,13 @@
             }
         }
 
-        /**
-         * Generates an AI overview/fun facts about a quiz topic.
-         * @param {string} topic - The topic to get an overview for.
-         */
         async function getTopicOverviewWithAI(topic) {
             showMessageBox(`
                 <div class="flex items-center justify-center text-blue-600">
                     <div class="spinner mr-2"></div>
                     Getting topic overview...
                 </div>
-            `); // Show loading spinner in message box
+            `);
 
             try {
                 let chatHistory = [];
@@ -1873,11 +1629,11 @@
                 const payload = {
                     contents: chatHistory,
                     generationConfig: {
-                        responseMimeType: "text/plain" // Request plain text response
+                        responseMimeType: "text/plain"
                     }
                 };
 
-                const apiKey = ""; // Canvas will provide this at runtime
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -1907,23 +1663,19 @@
             }
         }
 
-        // --- Initial Load & Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Check if a user is "logged in" from previous session (simple demo persistence)
             const storedCurrentUser = localStorage.getItem('currentUser');
             if (storedCurrentUser) {
                 currentUser = JSON.parse(storedCurrentUser);
-                // Find the user in the 'users' array to ensure consistency
                 const foundUser = users.find(u => u.email === currentUser.email);
                 if (foundUser) {
-                    currentUser = foundUser; // Use the full user object from 'users' array
+                    currentUser = foundUser;
                     if (currentUser.role === 'admin') {
                         showAdminDashboard();
                     } else {
                         showUserDashboard();
                     }
                 } else {
-                    // Stored user not found in current users array, clear it
                     localStorage.removeItem('currentUser');
                     showAuthSection();
                 }
@@ -1931,8 +1683,6 @@
                 showAuthSection();
             }
 
-            // --- Event Listeners ---
-            // Authentication Forms
             document.getElementById('login-submit-btn').addEventListener('click', handleLogin);
             document.getElementById('show-register-form-link').addEventListener('click', (e) => { e.preventDefault(); showRegisterForm(); });
             document.getElementById('show-forgot-password-form-link').addEventListener('click', (e) => { e.preventDefault(); showForgotPasswordForm(); });
@@ -1943,7 +1693,6 @@
             document.getElementById('forgot-password-submit-btn').addEventListener('click', handleForgotPassword);
             document.getElementById('show-login-form-link-from-forgot').addEventListener('click', (e) => { e.preventDefault(); showLoginForm(); });
 
-            // Dashboard Buttons
             document.getElementById('profile-btn').addEventListener('click', showProfile);
             document.getElementById('take-quiz-btn').addEventListener('click', showQuizSelection);
             document.getElementById('logout-btn-dashboard').addEventListener('click', logout);
@@ -1956,10 +1705,9 @@
                 generateQuestionsWithAI(topic, numQuestions, difficulty);
             });
             document.getElementById('back-to-dashboard-from-result-btn').addEventListener('click', showUserDashboard);
-            document.getElementById('view-quiz-review-btn').addEventListener('click', () => showQuizReviewSection(currentQuizQuestions, userAnswers)); // Pass current quiz data for review
-            document.getElementById('back-to-dashboard-from-review-btn').addEventListener('click', showUserDashboard); // Back from review
+            document.getElementById('view-quiz-review-btn').addEventListener('click', () => showQuizReviewSection(currentQuizQuestions, userAnswers));
+            document.getElementById('back-to-dashboard-from-review-btn').addEventListener('click', showUserDashboard);
             document.getElementById('take-featured-quiz-btn').addEventListener('click', () => {
-                // currentQuiz should already be set by loadFeaturedQuiz
                 if (currentQuiz) {
                     startQuiz();
                 } else {
@@ -1967,16 +1715,13 @@
                 }
             });
 
-
-            // Quiz Navigation Buttons
             prevBtn.addEventListener('click', prevQuestion);
             nextBtn.addEventListener('click', nextQuestion);
-            getAiExplanationBtn.addEventListener('click', getAiExplanation); 
-            pauseTimerBtn.addEventListener('click', pauseTimer); // New timer buttons
-            resumeTimerBtn.addEventListener('click', resumeTimer); // New timer buttons
-            lifeline5050Btn.addEventListener('click', use5050Lifeline); // New 50/50 lifeline listener
+            getAiExplanationBtn.addEventListener('click', getAiExplanation);
+            pauseTimerBtn.addEventListener('click', pauseTimer);
+            resumeTimerBtn.addEventListener('click', resumeTimer);
+            lifeline5050Btn.addEventListener('click', use5050Lifeline);
 
-            // Quiz Search Input & Category Filter
             quizSearchInput.addEventListener('input', (event) => {
                 loadQuizTopics(event.target.value, quizCategoryFilter.value);
             });
@@ -1984,7 +1729,6 @@
                 loadQuizTopics(quizSearchInput.value, event.target.value);
             });
 
-            // Admin Dashboard Buttons
             document.getElementById('logout-btn-admin').addEventListener('click', logout);
             document.getElementById('add-new-quiz-btn').addEventListener('click', () => showAddQuizForm());
             document.getElementById('save-quiz-btn').addEventListener('click', saveQuiz);
@@ -1992,7 +1736,6 @@
             document.getElementById('add-another-question-btn').addEventListener('click', addQuestionField);
         });
 
-        // Save current user to local storage on every change (simple session management)
         window.addEventListener('beforeunload', () => {
             if (currentUser) {
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
